@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+#nameDiv {
+	font-size: 8pt;
+	color: red;
+	font-weight: bold;
+}
+
+#hobbyDiv {
+	font-size: 9pt;
+	color: hotpink;
+	font-weight: bold;
+}
+</style>
+<body>
+	<form name="personForm" method="get" action="https://www.naver.com">
+		<table border="1" cellpadding="20" cellspacing="0">
+			<tr>
+				<th width="70">이름</th>
+				<td><input type="text" name="name" placeholder="이름 입력">
+					<div id="nameDiv"></div></td>
+			</tr>
+
+			<tr>
+				<th align="center">성별</th>
+				<td>
+					<fieldset>
+						<legend>성별</legend>
+						<input type="radio" name="gender" id="gender_m" value="0"
+							checked="checked"> <label for="gender_m">남자</label>
+						&nbsp;
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<input type="radio" name="gender" id="gender_w" value="1">
+						<label for="gender_w">여자</label>
+					</fieldset>
+				</td>
+			</tr>
+
+			<tr>
+				<th>색깔</th>
+				<td><select name="color" style="width: 70px">
+						<optgroup label="색깔">
+							<option value="red" selected>빨강</option>
+							<option value="green">초록</option>
+							<option value="blue">파랑</option>
+							<option value="magenta">보라</option>
+							<option value="cyan">하늘</option>
+						</optgroup>
+				</select></td>
+			</tr>
+
+			<tr>
+				<th>취미</th>
+				<td><input type="checkbox" name="hobby" id="hobby_read"
+					value="독서"> <label for="hobby_read">독서</label> <input
+					type="checkbox" name="hobby" id="hobby_movie" value="영화"> <label
+					for="hobby_movie">영화 </label> <input type="checkbox" name="hobby"
+					id="hobby_music" value="음악"> <label for="hobby_music">음악
+				</label> <input type="checkbox" name="hobby" id="hobby_game" value="게임">
+					<label for="hobby_game">게임 </label> <input type="checkbox"
+					name="hobby" id="hobby_show" value="쇼핑"> <label
+					for="hobby_show">쇼핑</label></td>
+			</tr>
+
+			<tr>
+				<th>과목</th>
+				<td><select name="subject" size=5 style="width: 100px"
+					multiple="multiple">
+						<option value="Java" selected="selected">Java</option>
+						<option value="Servlet">Servlet</option>
+						<option value="Jsp">JSP</option>
+						<option value="Spring">Spring</option>
+				</select></td>
+
+
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><input type="submit"
+					value="SEND"> <input type="reset" value="CANCEL"></td>
+			</tr>
+
+		</table>
+
+		<script type="text/javascript">
+			function check() {
+				document.getElementById("nameDiv").innerText = ""
+				document.getElementById("ageDiv").innerText = ""
+				if (document.paramForm.name.value == "")
+					document.getElementById("nameDiv").innerText = "이름 입력";
+				else if (document.paramForm.hobby.value == "")
+					document.getElementById("hobbyDiv").innerText = "취미 선택";
+				else
+					document.paramForm.submit();
+			}
+		</script>
+
+	</form>
+</body>
+</html>
