@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form name="checkLogin" method="post"
+		action="http://192.168.56.1:8080/memberServlet/checkLogin">
+
+		<table border="1" cellpadding="5" cellspacing="1">
+			<tr>
+				<th>아이디</th>
+				<td><input type="text" name="id" id="id" size="30"
+					placeholder="아이디 입력">
+					<div id="idDiv"></div></td>
+			</tr>
+
+			<tr>
+				<th>비밀번호</th>
+				<td><input type="password" name="pwd" id="pwd" size="40">
+					<div id="pwdDiv"></div></td>
+			</tr>
+
+		</table>
+	</form>
+</body>
+</html>
