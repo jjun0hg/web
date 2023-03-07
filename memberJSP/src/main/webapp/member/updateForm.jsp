@@ -4,7 +4,8 @@
     pageEncoding="UTF-8"%>
 <%
 	//데이터
-	String id = request.getParameter("id"); //loginForm.jsp의 id변수를 가지고 온다.
+	String id = (String)session.getAttribute("memId"); //loginForm.jsp의 id변수를 가지고 온다.
+	
 	
 	//DB
 	MemberDAO memberDAO = MemberDAO.getInstance();
@@ -24,7 +25,7 @@ div{
 }
 </style>
 </head>
-<body>
+<body onload="select()">
 <form name="updateForm" method="post" action="update.jsp">
 		<table border="1" cellpadding="5" cellspacing="0">
 			<tr>
@@ -74,10 +75,10 @@ div{
 			<tr>
 				<th>이메일</th>
 				<td>
-					<input type="text" name="email1" id=email1 style="width: 120px;">
+					<input type="text" name="email1" id=email1 style="width: 120px;" value="<%=memberDTO.getEmail1() %>">
 					@
-					<input type="text" name="email2" id=email2 style="width: 120px;" onchange="select()"> <!-- 자바스크립트 함수 호출 -->
-					<select name="email3" style="width:120px;" onchange="select()">
+					<input type="text" name="email2" id=email2 style="width: 120px;"  value="<%=memberDTO.getEmail2() %>"> <!-- 자바스크립트 함수 호출 -->
+					<select name="email3" id=email3 style="width:120px;" onchange="select()">
 							<option value="">직접입력</option>
 							<option value="naver.com">naver.com</option>
 							<option value="gmail.com">gmail.com</option>
@@ -90,27 +91,27 @@ div{
 				<th>휴대폰</th>
 				<td>
 					<select name="tel1" id=tel1 style="width: 60px;">
-						<option vlaue="010"> 010</option>
-						<option vlaue="011"> 011</option>
-						<option vlaue="019"> 019</option>
-						<option vlaue="070"> 070</option>
+						<option value="010"> 010</option>
+						<option value="011"> 011</option>
+						<option value="019"> 019</option>
+						<option value="070"> 070</option>
 					</select>
 					-
-					<input type="text" name="tel2" id=tel2 style="width: 70px;">
+					<input type="text" name="tel2" id=tel2 style="width: 70px;" value="<%=memberDTO.getTel2() %>">
 					-
-					<input type="text" name="tel3" id=tel3 style="width: 70px;">
+					<input type="text" name="tel3" id=tel3 style="width: 70px;" value="<%=memberDTO.getTel3() %>">
 				</td>
 			<tr>
 			
 			<tr>
 				<th>주소</th>
 				<td>
-					<input type="text" name="zipcode" id="zipcode" size="5" placeholder="우편번호" readonly>
+					<input type="text" name="zipcode" id="zipcode" size="5" placeholder="우편번호"  value="<%=memberDTO.getZipcode() %>">
 					<input type="button" value="우편번호검색" onclick="execDaumPostcode()">
 					<br>
-					<input type="text" name="addr1" id="addr1" style="width: 400px;" placeholder="주소" readonly/>
+					<input type="text" name="addr1" id="addr1" style="width: 400px;" placeholder="주소"  value="<%=memberDTO.getAddr1() %>"/>
 					<br>
-					<input type="text" name="addr2" id="addr2" style="width: 400px;" placeholder="상세주소"/>
+					<input type="text" name="addr2" id="addr2" style="width: 400px;" placeholder="상세주소" value ="<%=memberDTO.getAddr2() %>"/>
 				</td>
 			</tr>
 				
@@ -124,10 +125,19 @@ div{
 	</form>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
-<script type="text/javascript" src="../js/member.js"> /* 상대주소 */
+<script type="text/javascript" src="../js/member.js"> /* 상대주소 */</script>
+
+<script type="text/javascript">
+
+function select(){
+	document.updateForm.gender[<%=memberDTO.getGender() %>].checked = true;
+	document.updateForm.tel1.value = '<%=memberDTO.getTel1() %>'
+}
+</script>
 
 <!-- 절대주소 -->
-/* <script type="text/javascript" src="http://localhost:8080/memberServlet/js/member.js"> */
-</script>
+
+<!--<script type="text/javascript" src="http://localhost:8080/memberServlet/js/member.js"> -->
+
 </body>
 </html>

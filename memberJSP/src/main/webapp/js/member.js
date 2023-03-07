@@ -1,5 +1,6 @@
 function select() {
-	document.writeForm.email2.value = document.writeForm.email3.value;
+	//document.writeForm.email2.value = document.writeForm.email3.value;
+	document.getElementById("email2").value = document.getElementById("email3").value;
 }
 function checkWrite() {
 	//if(document.writeForm.name.value == "") alert("이름 입력하세요")
@@ -21,7 +22,20 @@ function checkWrite() {
 		document.writeForm.submit();
 }
 
-
+function checkUpdate() {
+	document.getElementById("nameDiv").innerText = "";
+	document.getElementById("pwdDiv").innerText = "";
+	
+	if (document.getElementById("name").value == "")
+		document.getElementById("nameDiv").innerText = "이름 입력";
+	else if (document.getElementById("pwd").value == "")
+		document.getElementById("pwdDiv").innerText = "비밀번호 입력";
+	else if (document.getElementById("pwd").value != document.getElementById("repwd").value)
+		document.getElementById("pwdDiv").innerText = "비밀번호가 맞지 않습니다";
+	else
+		document.updateForm.submit();	
+	
+}
 
 /* Daum 우편번호 */
 function execDaumPostcode() {

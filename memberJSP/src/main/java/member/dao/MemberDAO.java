@@ -170,6 +170,85 @@ public class MemberDAO {
 		return memberDTO;
 	}
 
+	public void memberUpdate(MemberDTO memberDTO){
+		String sql = "update member set name=?"
+									+ ", pwd=?"
+									+ ", gender=?"
+									+ ", email1=?"
+									+ ", email2=?"
+									+ ", tel1=?"
+									+ ", tel2=?"
+									+ ", tel3=?"
+									+ ", zipcode=?"
+									+ ", addr1=?"
+									+ ", addr2=?"
+									+ ", logtime=sysdate"
+									+ " where id=?";
+		
+		getConnection();
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberDTO.getName());
+			pstmt.setString(2, memberDTO.getPwd());
+			pstmt.setString(3, memberDTO.getGender());
+			pstmt.setString(4, memberDTO.getEmail1());
+			pstmt.setString(5, memberDTO.getEmail2());
+			pstmt.setString(6, memberDTO.getTel1());
+			pstmt.setString(7, memberDTO.getTel2());
+			pstmt.setString(8, memberDTO.getTel3());
+			pstmt.setString(9, memberDTO.getZipcode());
+			pstmt.setString(10, memberDTO.getAddr1());
+			pstmt.setString(11, memberDTO.getAddr2());
+			pstmt.setString(12, memberDTO.getId());
+			
+			pstmt.executeUpdate(); //개수 리턴
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			MemberDAO.close(conn, pstmt);
+		}
+		
+	}
 	
+	public boolean isExistPwd(String id, String pwd) {
+		boolean exist = false;
+		String sql ="SELECT * FROM MEMBER WHERE ID=? AND PWD=?";
+		getConnection();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, pwd);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) exist = true;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			MemberDAO.close(conn, pstmt, rs);
+		}
+				
+		return exist;
+	}
+	
+	public void memberDelete(String id){
+		String sql = "delete member where id=?";
+		
+		getConnection();
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			
+			pstmt.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			MemberDAO.close(conn, pstmt);
+		}
+
+	}
 	
 }

@@ -1,5 +1,10 @@
 package member.bean;
 
+import lombok.Getter;
+import lombok.Setter;
+@Getter
+@Setter
+
 public class MemberDTO {
 	private String name;
 	private String id;
@@ -13,6 +18,7 @@ public class MemberDTO {
 	private String zipcode;
 	private String addr1;
 	private String addr2;
+	
 	public String getName() {
 		return name;
 	}
