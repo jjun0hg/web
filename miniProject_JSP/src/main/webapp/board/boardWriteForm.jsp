@@ -14,7 +14,7 @@ div{
 </style>
 </head>
 <body>
-<form name="boardWriteForm" method="post" action="../index.jsp">
+<form name="boardWriteForm" method="post" action="boardWrite.jsp">
 		<h3>
 		<img src="../image/pug.png" width="80" height="80" alt="pug"
 		onclick="location.href='../index.jsp'" style="cursor: pointer;"> 글쓰기

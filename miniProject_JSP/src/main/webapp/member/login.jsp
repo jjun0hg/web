@@ -1,4 +1,5 @@
 <%@page import="member.dao.MemberDAO"%>
+<%@page import="member.bean.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
@@ -8,12 +9,8 @@
 	
 	//DB
 			MemberDAO memberDAO = MemberDAO.getInstance();	//클래스 생성
-			String name = memberDAO.memberLogin(id, pwd);
-			
-			%>
-   
-   
-   
+			MemberDTO memberDTO = memberDAO.memberLogin(id, pwd);
+	%>
    
 <!DOCTYPE html>
 <html>
@@ -22,7 +19,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<% if(name == null) {
+<% if(memberDTO == null) {
 	//페이지 이동
 	response.sendRedirect("loginFail.jsp");
 	
@@ -40,8 +37,10 @@
 	
 	//세션
 	//HttpSession session = request.getSession(); - JSP는 세션이 내장객체로 존재한다.
-	session.setAttribute("memName", name);
+	session.setAttribute("memName", memberDTO.getName());
 	session.setAttribute("memId", id);
+	session.setAttribute("memPwd", pwd);
+	session.setAttribute("memEmail", memberDTO.getEmail1()+"@"+memberDTO.getEmail2());
 	
 	//페이지이동
 

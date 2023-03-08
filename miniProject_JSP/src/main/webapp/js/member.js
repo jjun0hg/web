@@ -1,4 +1,4 @@
-function select() {
+function select(){
 	//document.writeForm.email2.value = document.writeForm.email3.value;
 	document.getElementById("email2").value = document.getElementById("email3").value;
 }

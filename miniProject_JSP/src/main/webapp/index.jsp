@@ -27,7 +27,7 @@ a:active {color: cyan; text-decoration: none;}
 	<a href="../miniProject_JSP/board/boardWriteForm.jsp">글쓰기</a><br>
 <%}%>	
 
-<a href="">목록</a><br>
+<a href="../miniProject_JSP/board/boardList.jsp">목록</a><br>
 </h3>
 </div>
 </body>

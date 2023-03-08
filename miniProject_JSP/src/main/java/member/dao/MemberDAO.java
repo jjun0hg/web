@@ -108,8 +108,10 @@ public class MemberDAO {
 
 	}
 	
-	public String memberLogin(String id, String pwd){
-		String name = null;
+	public MemberDTO memberLogin(String id, String pwd){
+
+		MemberDTO memberDTO = null;
+		
 		String sql = "SELECT * FROM MEMBER where id=? and pwd=?";
 		getConnection();	//오라클 접속
 		try {
@@ -119,7 +121,11 @@ public class MemberDAO {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				name = rs.getString("name");
+				memberDTO = new MemberDTO();
+				memberDTO.setName(rs.getString("name"));
+				memberDTO.setEmail1(rs.getString("Email1"));
+				memberDTO.setEmail2(rs.getString("Email2"));
+
 			}
 		} catch (SQLException e) {
 			
@@ -128,8 +134,7 @@ public class MemberDAO {
 			MemberDAO.close(conn, pstmt, rs);
 		}
 		
-		
-		return name;
+		return memberDTO ;
 	}
 	
 	public MemberDTO getMember(String id){ //updateForm.jsp의 memberDAO.getMember(id)의 값을 전달

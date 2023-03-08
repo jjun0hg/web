@@ -25,7 +25,7 @@ div{
 }
 </style>
 </head>
-<body onload="select()">
+<body onload="pick()">
 <form name="updateForm" method="post" action="update.jsp">
 		<table border="1" cellpadding="5" cellspacing="0">
 			<tr>
@@ -72,20 +72,20 @@ div{
 				</td>
 			</tr>
 			
-			<tr>
-				<th>이메일</th>
-				<td>
-					<input type="text" name="email1" id=email1 style="width: 120px;" value="<%=memberDTO.getEmail1() %>">
-					@
-					<input type="text" name="email2" id=email2 style="width: 120px;"  value="<%=memberDTO.getEmail2() %>"> <!-- 자바스크립트 함수 호출 -->
-					<select name="email3" id=email3 style="width:120px;" onchange="select()">
-							<option value="">직접입력</option>
-							<option value="naver.com">naver.com</option>
-							<option value="gmail.com">gmail.com</option>
-							<option value="nate.com">nate.com</option>
-					</select>
-				</td>
-			</tr>
+			    <tr>
+   <th>이메일</th>
+   <td>
+    <input type="text" name="email1" style="width: 120px;" value="<%=memberDTO.getEmail1() %>">
+    @
+    <input type="text" name="email2" id="email2" style="width: 120px;" value="<%=memberDTO.getEmail2() %>">
+    <select name="email3" id="email3" style="width: 120px;" onchange="select()">
+     <option value="">직접입력</option>
+     <option value="naver.com">naver.com</option>
+     <option value="gmail.com">gmail.com</option>
+     <option value="nate.com">nate.com</option>
+    </select>
+   </td>
+  </tr>
 			
 			<tr>
 				<th>휴대폰</th>
@@ -101,7 +101,7 @@ div{
 					-
 					<input type="text" name="tel3" id=tel3 style="width: 70px;" value="<%=memberDTO.getTel3() %>">
 				</td>
-			<tr>
+			</tr>
 			
 			<tr>
 				<th>주소</th>
@@ -129,7 +129,7 @@ div{
 
 <script type="text/javascript">
 
-function select(){
+function pick(){
 	document.updateForm.gender[<%=memberDTO.getGender() %>].checked = true;
 	document.updateForm.tel1.value = '<%=memberDTO.getTel1() %>'
 }
